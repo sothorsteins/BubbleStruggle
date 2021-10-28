@@ -60,28 +60,6 @@ g_main._iterCore = function (dt) {
 
 g_main._isGameOver = false;
 
-g_main.gameOver = function () {
-    this._isGameOver = true;
-    document.getElementById("gameOver").style.display = "flex";
-    document.getElementById("gameScore").innerHTML = "Final score: " + g_score;
-    var highScores = document.getElementById("highScores");
-    while (highScores.firstChild) {
-        highScores.removeChild(highScores.lastChild);
-    }
-    
-    g_highScores.push(g_score);
-    g_highScores.sort(function (a, b) { return b-a; });
-    for (let i = 0; i < 3; i++) {
-        var score = document.createElement("li");
-        if (g_highScores[i]) score.innerHTML = g_highScores[i];
-        else score.innerHTML = 0;
-        highScores.appendChild(score);
-    }
-    console.log("gameOver: quitting...");
-};
-
-// Simple voluntary quit mechanism
-//
 var KEY_QUIT = 'Q'.charCodeAt(0);
 function requestedQuit() {
     return g_keys[KEY_QUIT];
@@ -129,8 +107,6 @@ g_main.init = function () {
     //
     //window.focus(true);
 
-    this._isGameOver = false;
-    document.getElementById("gameOver").style.display = "none";
     g_ball.reset();
     this._requestNextIteration();
 };
