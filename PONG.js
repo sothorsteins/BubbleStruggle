@@ -36,7 +36,7 @@ var KEY_A = 'A'.charCodeAt(0);
 var KEY_D = 'D'.charCodeAt(0);
 
 
-var g_paddle1 = new Paddle({
+var g_player = new Player({
     cx : g_canvas.width/2,
     cy : g_canvas.height - 50,
     
@@ -139,9 +139,9 @@ function gatherInputs() {
 
 function updateSimulation(du) {
     
-    g_ball.update(du);
+   // g_ball.update(du);
     
-    g_paddle1.update(du);
+    g_player.update(du);
 
     if (g_powerUps.length > 0) {
         for (let i = 0; i < g_powerUps.length; i++) {
@@ -180,9 +180,9 @@ function renderSimulation(ctx) {
     ctx.fillStyle = "white";
     ctx.fillText(g_score, 20, 40);
 
-    g_ball.render(ctx);
+//    g_ball.render(ctx);
 
-    g_paddle1.render(ctx);
+    g_player.render(ctx);
 
     if (g_powerUps.length > 0) {
         g_powerUps.forEach(power => power.render(ctx));

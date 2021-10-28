@@ -14,6 +14,7 @@ Player.prototype.halfHeight = 10;
 var crabImage = new Image();
 crabImage.src = "./img/cartoon-crab.svg";
 
+
 Player.prototype.update = function (du) {
 
     if (g_keys[this.GO_RIGHT]) {

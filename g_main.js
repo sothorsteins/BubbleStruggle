@@ -107,6 +107,6 @@ g_main.init = function () {
     //
     //window.focus(true);
 
-    g_ball.reset();
+    //g_ball.reset();
     this._requestNextIteration();
 };
