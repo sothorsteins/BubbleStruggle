@@ -13,13 +13,14 @@ var errorSound = new Audio('error.ogg');
 var g_ball = {
     cx: 50,
     cy: 400,
-    radius: 8,
+    radius: 24,
 
-    xVel: 5,
-    yVel: 4
+    xVel: 16,
+    yVel: 1
 };
 
 g_ball.update = function (du) {
+    
     // Remember my previous position
     var prevX = this.cx;
     var prevY = this.cy;
@@ -30,25 +31,12 @@ g_ball.update = function (du) {
 
     for (let i = 0; i < g_bricks.length; i++) {
         for (let j = 0; j < g_bricks[i].length; j++) {
-            var currentBrick = g_bricks[i][j];
-            if (currentBrick.collidesWith(prevX, prevY, nextX, nextY, this.radius)) {
                 if (!g_superPower) this.yVel *= -1;
                 g_bricks[i].splice(j, 1);
                 g_score += 10;
-                boingSound.play();
                 if (Math.random() < 0.15) {
-                    // 15% chance to get a powerup
-                    var id = Math.floor(Math.random() * 3) + 1;
-                    g_powerUps[g_powerUps.length] = new PowerUp({
-                        cx: currentBrick.cx,
-                        cy: currentBrick.cy,
-                        yVel: 2,
-                        typeId: id,
-                        isActive: false
-                    });
                     
                 }
-            }
         }
     }
     debugger;
@@ -88,8 +76,8 @@ g_ball.update = function (du) {
 g_ball.reset = function () {
     this.cx = 50;
     this.cy = 400;
-    this.xVel = -5;
-    this.yVel = 4;
+    this.xVel = 3;
+    this.yVel = 7;
 };
 
 g_ball.render = function (ctx) {

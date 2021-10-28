@@ -21,8 +21,6 @@ var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
 var replayBtn = document.getElementById("replayBtn");
 
-replayBtn.addEventListener("click", init);
-
 /*
 0        1         2         3         4         5         6         7         8         9
 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
@@ -153,7 +151,6 @@ function updateSimulation(du) {
         }
     }
 
-    if (gameStarted && areBricksCleared()) g_main.gameOver();
 
 }
 
@@ -176,11 +173,7 @@ function renderSimulation(ctx) {
 
     var background = new Image();
     background.src = "./img/beach.png";
-
-    // Make sure the image is loaded first otherwise nothing will draw.
-/*    background.onload = function () {
-        ctx.drawImage(background, 0, 0);
-    }*/
+  
     ctx.drawImage(background, 0, 0, g_canvas.width, g_canvas.height);
 
     ctx.font = "30px Arial";
@@ -190,13 +183,6 @@ function renderSimulation(ctx) {
     g_ball.render(ctx);
 
     g_paddle1.render(ctx);
-
-    for (let i = 0; i < g_bricks.length; i++) {
-        for (let j = 0; j < g_bricks[i].length; j++) {
-            var currentBrick = g_bricks[i][j];
-            currentBrick.render(g_ctx);
-        }
-    }
 
     if (g_powerUps.length > 0) {
         g_powerUps.forEach(power => power.render(ctx));

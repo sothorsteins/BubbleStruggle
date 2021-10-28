@@ -19,25 +19,6 @@ Brick.prototype.render = function (ctx) {
     
 };
 
-Brick.prototype.collidesWith = function (prevX, prevY,
-    nextX, nextY,
-    r) {
-    var brickEdge = this.cx;
-
-    // Check X coords
-    if ((nextX - r < brickEdge + this.halfWidth && prevX - r >= brickEdge - this.halfWidth) ||
-        (nextX + r > brickEdge - this.halfWidth && prevX + r <= brickEdge + this.halfWidth)) {
-        // Check Y coords
-        if (nextY + 2 * r >= this.cy - this.halfHeight &&
-            nextY - 2 * r <= this.cy + this.halfHeight) {
-            // It's a hit!
-            return true;
-        }
-    }
-    // It's a miss!
-    return false;
-};
-
 Brick.prototype.collidesWithSide = function (prevX, prevY,
     nextX, nextY,
     r) {
