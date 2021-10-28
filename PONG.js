@@ -77,7 +77,7 @@ function createBricks(numLines, numColumns) {
         lineSpace += heightSpacing;
         var bricks = [];
         for (let j = 0; j <= numColumns; j++) {
-            bricks[j] = new Brick({ cx: 80 + columnSpace, cy: 20 + lineSpace, color: colors[i%colors.length]})
+            bricks[j] = new Ball({ cx: 80 + columnSpace, cy: 20 + lineSpace, color: colors[i%colors.length]})
             columnSpace += widthSpacing;
         }
         g_bricks[i] = bricks;

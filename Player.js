@@ -1,5 +1,5 @@
 // A generic constructor which accepts an arbitrary descriptor object
-function Paddle(descr) {
+function Player(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
@@ -8,13 +8,13 @@ function Paddle(descr) {
 // Add these properties to the prototype, where they will server as
 // shared defaults, in the absence of an instance-specific overrides.
 
-Paddle.prototype.halfWidth = 50;
-Paddle.prototype.halfHeight = 10;
+Player.prototype.halfWidth = 50;
+Player.prototype.halfHeight = 10;
 
 var crabImage = new Image();
 crabImage.src = "./img/cartoon-crab.svg";
 
-Paddle.prototype.update = function (du) {
+Player.prototype.update = function (du) {
 
     if (g_keys[this.GO_RIGHT]) {
         if (this.cx < g_canvas.width - 5) this.cx += 5;
@@ -23,12 +23,12 @@ Paddle.prototype.update = function (du) {
     }
 };
 
-Paddle.prototype.render = function (ctx) {
+Player.prototype.render = function (ctx) {
     // (cx, cy) is the centre; must offset it for drawing
     ctx.drawImage(crabImage, this.cx - this.halfWidth, this.cy-this.halfHeight, this.halfWidth * 2, this.halfHeight * 4);
 };
 
-Paddle.prototype.collidesWith = function (prevX, prevY, 
+Player.prototype.collidesWith = function (prevX, prevY, 
                                           nextX, nextY, 
     r) {
     var paddleEdge = this.cx;
