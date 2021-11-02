@@ -3,7 +3,7 @@
 // ==========
 
 // BALL STUFF
-
+/*
 var ballImage = new Image();
 ballImage.src = "./img/misc-beachball.svg";
 
@@ -90,4 +90,4 @@ g_ball.render = function (ctx) {
     
     ctx.drawImage(ballImage, this.cx, this.cy, this.radius * 3, this.radius * 3);
     
-};
+};*/

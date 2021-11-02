@@ -23,5 +23,6 @@ function eatKey(keyCode) {
     return isDown;
 }
 
+
 window.addEventListener("keydown", handleKeydown);
 window.addEventListener("keyup", handleKeyup);

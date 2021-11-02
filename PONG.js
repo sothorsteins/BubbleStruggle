@@ -34,6 +34,7 @@ var replayBtn = document.getElementById("replayBtn");
 
 var KEY_A = 'A'.charCodeAt(0);
 var KEY_D = 'D'.charCodeAt(0);
+var KEY_W = 'W'.charCodeAt(0);
 
 
 var g_player = new Player({
@@ -41,12 +42,13 @@ var g_player = new Player({
     cy : g_canvas.height - 50,
     
     GO_RIGHT   : KEY_D,
-    GO_LEFT : KEY_A
+    GO_LEFT : KEY_A,
+    JUMP: KEY_W
 });
 
 // POWERUP STUFF
 
-var g_bricks;
+var g_balls=[];
 var g_powerUps = [];
 var g_activePowerUps = [];
 var g_highScores = [];
@@ -57,14 +59,14 @@ var gameStarted;
 
 
 function init() {
-    g_bricks = [];
+    g_balls = [];
     g_score = 0;
     gameStarted = false;
-    createBricks(6, 8);
+    createBalls();
     g_main.init();
 }
 
-function createBricks(numLines, numColumns) {
+/*function createBricks(numLines, numColumns) {
     var lineSpace = 0;
     var columnSpace = 0;
     var widthSpacing = (g_canvas.width - 200) / numColumns;
@@ -83,6 +85,10 @@ function createBricks(numLines, numColumns) {
     }
     gameStarted = true;
 
+}*/
+function createBalls(){
+    //console.log("balls created");
+    g_balls.push(new Ball({cx:80,cy:400,radius:48,xVel:4,yVel:8}));
 }
 
 // 1 = speedMode, 2 = super power, 3 = Extra points
@@ -107,12 +113,12 @@ function handlePowerups(id) {
     }
 }
 
-function areBricksCleared() {
+/*function areBricksCleared() {
     for (let i = 0; i < g_bricks.length; i++) {
         if (g_bricks[i].length > 0) return false;
     }
     return true;
-}
+}*/
 
 // =============
 // GATHER INPUTS
@@ -139,7 +145,9 @@ function gatherInputs() {
 
 function updateSimulation(du) {
     
-   // g_ball.update(du);
+    for(var i=0;i<g_balls.length;i++){
+        g_balls[i].update(du);
+    }
     
     g_player.update(du);
 
@@ -180,7 +188,9 @@ function renderSimulation(ctx) {
     ctx.fillStyle = "white";
     ctx.fillText(g_score, 20, 40);
 
-//    g_ball.render(ctx);
+     for(var i=0;i<g_balls.length;i++){
+        g_balls[i].render(ctx);
+    }
 
     g_player.render(ctx);
 
